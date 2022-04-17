@@ -4,7 +4,7 @@
 April 17 2022.
 
 ### Project Title
-Bikeshare Project
+Bikeshare Project.
 
 ### Description
 Bikeshare project calculates the distances of a US bike sharing project covered for three cities - Washington, Chiccago and New York in the year 2017.
