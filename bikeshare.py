@@ -18,36 +18,36 @@ def get_filters():
     """
     print('Hello! Let\'s explore some US bikeshare data!')
     # TO DO: get user input for city (chicago, new york city, washington). HINT: Use a while loop to handle invalid inputs
-    
+
     city_option = ["chicago", "new york", "washington"]
     city = input("What city would you like to see data from? choose between Chicago, New York, and Washington \n").lower()
-    
+
     while city not in city_option:
-        
+
         print('The input you provided is invalid, Kindly look out for your spelling or any other source')
         city = input("What city would you like to see data from? choose between Chicago, New York, and Washington \n").lower()
-         
+
     # TO DO: get user input for month (all, january, february, ... , june)
-    
+
     month_option = ["january", "february", "march", "april", "may", "june", "july", "august", "september", "october", "november", "december", "all"]
     month = input("Enter month between January and December or all to select all the available months \n").lower()
     while month not in month_option:
-        
+
         print('The input you provided is invalid, Kindly look out for your spelling or any other source')
-        month = input("Enter month between January and December or all to select all the available months \n").lower()      
-    
+        month = input("Enter month between January and December or all to select all the available months \n").lower()
+
     # TO DO: get user input for day of week (all, monday, tuesday, ... sunday)
-    
+
     weekday_option = ["sunday", "monday", "tuesday", "wednesday", "thursday", "friday", "saturday"]
     day = input("Enter month between sunday and saturday \n").lower()
     while day not in weekday_option:
-        
+
         print('The input you provided is invalid, Kindly look out for your spelling or any other source')
         day = input("Enter month between sunday and saturday \n").lower()
-        
+
     print('-'*40)
     return city, month, day
-        
+
 
 def load_data(city, month, day):
     """
@@ -67,12 +67,12 @@ def load_data(city, month, day):
     month_ = df_data['Start Time'].dt.month_name().str.lower()
     hour_ = df_data['Start Time'].dt.hour
     df_data['Weekday'], df_data['Month'], df_data['Hour'] = weekday_, month_, hour_
-    
+
     if month == 'all':
         df = df_data[df_data['Weekday'] == day]
     else:
         df = df_data[(df_data['Month'] == month) & (df_data['Weekday'] == day)]
-    
+
     #df = print(data)
 
     return df
@@ -146,17 +146,17 @@ def user_stats(df, month):
 
     # TO DO: Display counts of gender
     gend_ = 'Gender'
-    
+
     if gend_ in df:
         counted_ = collections.Counter(df["Gender"])
-        for key in counted_:    
-            print(f"%s: %s counts\n" %(key, counted_[key]))  
+        for key in counted_:
+            print(f"%s: %s counts\n" %(key, counted_[key]))
     else:
-        print ("Gender stats cannot be calculated because Gender does not appear in the data frame") 
-           
+        print ("Gender stats cannot be calculated because Gender does not appear in the data frame")
+
     # TO DO: Display earliest, most recent, and most common year of birth
     birthYear = 'Birth Year'
-    
+
     if birthYear in df:
         x = df['Birth Year'].min()
         y = df['Birth Year'].max()
@@ -164,7 +164,7 @@ def user_stats(df, month):
         print('Earliest year of birth:', x, "\n Most recent year of birth:", y, "\n Most common year of birth:", z)
     else:
         print ("Birth year stats cannot be calculated because Birth year does not appear in the data frame")
-    
+
     print("\nThis took %s seconds." % (time.time() - start_time))
     print('-'*40)
 
